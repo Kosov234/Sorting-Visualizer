@@ -1,13 +1,13 @@
 type ButtonProps = {
-  alghorithmHandler: () => void;
+  onClick: () => void;
   text: string;
 };
 
-export const Button = ({ alghorithmHandler, text }: ButtonProps) => {
+export const Button = ({ onClick, text }: ButtonProps) => {
   return (
     <button
       className="flex-1 bg-blue-600 text-white py-2 px-4 rounded"
-      onClick={() => alghorithmHandler()}
+      onClick={() => onClick()}
     >
       <p className="text-base">{text}</p>
     </button>

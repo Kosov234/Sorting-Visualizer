@@ -4,32 +4,73 @@ import { bubbleSortHandler } from "./utils/bubble_sort_handler/bubble_sort_handl
 import { insertionSortHandler } from "./utils/insertion_sort_handler/insertion_sort_handler";
 import { mergeSortHandler } from "./utils/merge_sort_handler/merge_sort_handler";
 import { Button } from "./components/Button/Button";
+import { ANIMATION_SPEED_MS, ARRAY_SIZE } from "./utils/constants";
 
 const Content = () => {
   const [array, setArray] = useState(randomizeArray());
 
+  const buttons = document.getElementsByTagName("button");
+
   return (
     <section className="flex flex-1 flex-col gap-2 p-2 bg-gray-100">
       <div className="flex flex-wrap gap-3 justify-between p-8 bg-slate-300 rounded-md">
-        <button
-          className="flex-1 bg-blue-600 text-white py-2 px-4 rounded "
-          onClick={() => setArray(randomizeArray())}
-        >
-          <p className="text-base">Randomize</p>
-        </button>
+        <Button
+          onClick={() => {
+            setArray(randomizeArray());
+          }}
+          text="Randomize"
+        />
 
         <Button
-          alghorithmHandler={() => bubbleSortHandler(array)}
+          onClick={() => {
+            {
+              for (const button of buttons) {
+                button.disabled = true;
+              }
+              bubbleSortHandler(array);
+
+              setTimeout(() => {
+                for (const button of buttons) {
+                  button.disabled = false;
+                }
+              }, ((ARRAY_SIZE * ARRAY_SIZE + ARRAY_SIZE) / 2) * ANIMATION_SPEED_MS);
+            }
+          }}
           text="Bubble Sort"
         />
 
         <Button
-          alghorithmHandler={() => insertionSortHandler(array)}
+          onClick={() => {
+            {
+              for (const button of buttons) {
+                button.disabled = true;
+              }
+              insertionSortHandler(array);
+              setTimeout(() => {
+                for (const button of buttons) {
+                  button.disabled = false;
+                }
+              }, ((ARRAY_SIZE * ARRAY_SIZE + ARRAY_SIZE) / 2) * ANIMATION_SPEED_MS);
+            }
+          }}
           text="Insertion Sort"
         />
 
         <Button
-          alghorithmHandler={() => mergeSortHandler(array)}
+          onClick={() => {
+            {
+              for (const button of buttons) {
+                button.disabled = true;
+              }
+              mergeSortHandler(array);
+
+              setTimeout(() => {
+                for (const button of buttons) {
+                  button.disabled = false;
+                }
+              }, ((ARRAY_SIZE * ARRAY_SIZE + ARRAY_SIZE) / 2) * ANIMATION_SPEED_MS);
+            }
+          }}
           text="Merge Sort"
         />
       </div>
