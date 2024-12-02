@@ -5,8 +5,15 @@ import {
   SECONDARY_COLOR,
 } from "../constants";
 
-export const bubbleSortHandler = (array: number[]) => {
-  const animations = getBubbleSortAnimations(array);
+type BubbleSortHandlerReturnType = {
+  animationsLength: number;
+  sortedArray: number[];
+};
+
+export const bubbleSortHandler = (
+  array: number[]
+): BubbleSortHandlerReturnType => {
+  const { animations, sortedArray } = getBubbleSortAnimations(array);
 
   animations.forEach((animation, index) => {
     const [firstBarIndex, secondBarIndex] = animation;
@@ -31,4 +38,5 @@ export const bubbleSortHandler = (array: number[]) => {
       }
     }, index * ANIMATION_SPEED_MS);
   });
+  return { animationsLength: animations.length, sortedArray };
 };

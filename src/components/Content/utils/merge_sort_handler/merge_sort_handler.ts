@@ -5,8 +5,15 @@ import {
   SECONDARY_COLOR,
 } from "../constants";
 
-export const mergeSortHandler = (array: number[]) => {
-  const animations = getMergeSortAnimations(array);
+type MergeSortHandlerReturnType = {
+  animationsLength: number;
+  sortedArray: number[];
+};
+
+export const mergeSortHandler = (
+  array: number[]
+): MergeSortHandlerReturnType => {
+  const { animations, sortedArray } = getMergeSortAnimations(array);
   for (let i = 0; i < animations.length; i++) {
     const arrayBars = document.getElementsByClassName(
       "arrayBar"
@@ -29,4 +36,6 @@ export const mergeSortHandler = (array: number[]) => {
       }, i * ANIMATION_SPEED_MS);
     }
   }
+
+  return { animationsLength: animations.length, sortedArray };
 };

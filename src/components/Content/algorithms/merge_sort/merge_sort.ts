@@ -1,8 +1,15 @@
-export function getMergeSortAnimations(array: number[]): number[][] {
+type getMergeSortAnimationsReturnType = {
+  animations: number[][];
+  sortedArray: number[];
+};
+
+export function getMergeSortAnimations(
+  array: number[]
+): getMergeSortAnimationsReturnType {
   const animations: number[][] = [];
   const auxiliaryArray = array.slice();
   mergeSortHelper(array, 0, array.length - 1, auxiliaryArray, animations);
-  return animations;
+  return { animations, sortedArray: array };
 }
 
 function mergeSortHelper(

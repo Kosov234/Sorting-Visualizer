@@ -4,7 +4,7 @@ import { bubbleSortHandler } from "./utils/bubble_sort_handler/bubble_sort_handl
 import { insertionSortHandler } from "./utils/insertion_sort_handler/insertion_sort_handler";
 import { mergeSortHandler } from "./utils/merge_sort_handler/merge_sort_handler";
 import { Button } from "./components/Button/Button";
-import { ANIMATION_SPEED_MS, ARRAY_SIZE } from "./utils/constants";
+import { ANIMATION_SPEED_MS } from "./utils/constants";
 
 const Content = () => {
   const [array, setArray] = useState(randomizeArray());
@@ -23,53 +23,53 @@ const Content = () => {
 
         <Button
           onClick={() => {
-            {
-              for (const button of buttons) {
-                button.disabled = true;
-              }
-              bubbleSortHandler(array);
-
-              setTimeout(() => {
-                for (const button of buttons) {
-                  button.disabled = false;
-                }
-              }, ((ARRAY_SIZE * ARRAY_SIZE + ARRAY_SIZE) / 2) * ANIMATION_SPEED_MS);
+            for (const button of buttons) {
+              button.disabled = true;
             }
+            const { animationsLength, sortedArray } = bubbleSortHandler(array);
+
+            setTimeout(() => {
+              for (const button of buttons) {
+                button.disabled = false;
+              }
+              setArray(sortedArray);
+            }, animationsLength * ANIMATION_SPEED_MS);
           }}
           text="Bubble Sort"
         />
 
         <Button
           onClick={() => {
-            {
-              for (const button of buttons) {
-                button.disabled = true;
-              }
-              insertionSortHandler(array);
-              setTimeout(() => {
-                for (const button of buttons) {
-                  button.disabled = false;
-                }
-              }, ((ARRAY_SIZE * ARRAY_SIZE + ARRAY_SIZE) / 2) * ANIMATION_SPEED_MS);
+            for (const button of buttons) {
+              button.disabled = true;
             }
+            const { animationsLength, sortedArray } =
+              insertionSortHandler(array);
+            setTimeout(() => {
+              for (const button of buttons) {
+                button.disabled = false;
+              }
+
+              setArray(sortedArray);
+            }, animationsLength * ANIMATION_SPEED_MS);
           }}
           text="Insertion Sort"
         />
 
         <Button
           onClick={() => {
-            {
-              for (const button of buttons) {
-                button.disabled = true;
-              }
-              mergeSortHandler(array);
-
-              setTimeout(() => {
-                for (const button of buttons) {
-                  button.disabled = false;
-                }
-              }, ((ARRAY_SIZE * ARRAY_SIZE + ARRAY_SIZE) / 2) * ANIMATION_SPEED_MS);
+            for (const button of buttons) {
+              button.disabled = true;
             }
+
+            const { animationsLength, sortedArray } = mergeSortHandler(array);
+
+            setTimeout(() => {
+              for (const button of buttons) {
+                button.disabled = false;
+              }
+              setArray(sortedArray);
+            }, animationsLength * ANIMATION_SPEED_MS);
           }}
           text="Merge Sort"
         />

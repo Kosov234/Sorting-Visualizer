@@ -5,8 +5,15 @@ import {
   SECONDARY_COLOR,
 } from "../constants";
 
-export const insertionSortHandler = (array: number[]) => {
-  const animations = getInsertionSortAnimations(array);
+type InsertionSortHandlerReturnType = {
+  animationsLength: number;
+  sortedArray: number[];
+};
+
+export const insertionSortHandler = (
+  array: number[]
+): InsertionSortHandlerReturnType => {
+  const { animations, sortedArray } = getInsertionSortAnimations(array);
   const arrayBars = document.getElementsByClassName(
     "arrayBar"
   ) as HTMLCollectionOf<HTMLElement>;
@@ -41,4 +48,12 @@ export const insertionSortHandler = (array: number[]) => {
         break;
     }
   }
+
+  setTimeout(() => {
+    for (let i = 0; i < arrayBars.length; i++) {
+      arrayBars[i].style.backgroundColor = PRIMARY_COLOR;
+    }
+  }, animations.length * ANIMATION_SPEED_MS);
+
+  return { animationsLength: animations.length, sortedArray };
 };

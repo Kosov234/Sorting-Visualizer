@@ -6,7 +6,7 @@ type ButtonProps = {
 export const Button = ({ onClick, text }: ButtonProps) => {
   return (
     <button
-      className="flex-1 bg-blue-600 text-white py-2 px-4 rounded"
+      className="flex-1 bg-blue-600 text-white py-2 px-4 rounded disabled:opacity-75"
       onClick={() => onClick()}
     >
       <p className="text-base">{text}</p>

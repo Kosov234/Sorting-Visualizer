@@ -14,5 +14,5 @@ export const getBubbleSortAnimations = (arr: number[]) => {
     }
   }
 
-  return animations;
+  return { animations, sortedArray };
 };
