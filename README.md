@@ -3,4 +3,4 @@
 The main goal of this small project was to try out TailwindCSS
 
 ## TechStack
-NPM, Vite, React, Tailwind
+NPM, Vite, React, TailwindCSS
